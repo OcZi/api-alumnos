@@ -1,22 +1,47 @@
 org: salvadordonayre
-service: api-alumnos
+service: api-productos
 
 provider:
   name: aws
   runtime: python3.12
-  timeout: 30  
+  timeout: 30
+  region: us-east-1
   iam:
     role: arn:aws:iam::077190872393:role/LabRole
 
 functions:
-  listar:
-    handler: ListarAlumnos.lambda_handler
+  listarProductos:
+    handler: listar_productos.lambda_handler
     events:
       - http:
-          path: /alumnos/listar
+          path: /productos/listar
           method: post
           cors: true
           integration: lambda
 
+  buscarProducto:
+    handler: buscar_producto.lambda_handler
+    events:
+      - http:
+          path: /productos/buscar
+          method: post
+          cors: true
+          integration: lambda
 
+  modificarProducto:
+    handler: modificar_producto.lambda_handler
+    events:
+      - http:
+          path: /productos/modificar
+          method: put
+          cors: true
+          integration: lambda
 
+  eliminarProducto:
+    handler: eliminar_producto.lambda_handler
+    events:
+      - http:
+          path: /productos/eliminar
+          method: delete
+          cors: true
+          integration: lambda
