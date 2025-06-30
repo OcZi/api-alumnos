@@ -14,6 +14,8 @@ def load_body(event):
 def lambda_handler(event, context):
     # Entrada (json)
     body = load_body(event)
+    tenant_id = body["tenant_id"]
+    alumno_id = body["alumno_id"]
 
     if not tenant_id or not alumno_id:
         return {
