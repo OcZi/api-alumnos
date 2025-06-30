@@ -24,7 +24,7 @@ def lambda_handler(event, context):
     
     table = boto3.resource('dynamodb').Table('t_alumnos')
 
-    update_expr = "SET " + ", ".join(f"{k}= :{k}" for k in updates)
+    update_expr = "SET " + ", ".join(f"alumno_datos.{k}= :{k}" for k in updates)
     expr_values = {f":{k}": v for k, v in updates.items()}
 
     table.update_item(
