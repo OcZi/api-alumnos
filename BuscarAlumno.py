@@ -1,8 +1,19 @@
 import boto3
 import json
 
+
+def load_body(event):
+    if 'body' not in event:
+        return event
+
+    if isinstance(event["body"], dict):
+        return event['body']
+    else:
+        return json.loads(event['body'])
+
+
 def lambda_handler(event, context):
-    body = json.loads(event['body'])
+    body = load_body(event)
     tenant_id = body.get('tenant_id')
     alumno_id = body.get('alumno_id')
 
