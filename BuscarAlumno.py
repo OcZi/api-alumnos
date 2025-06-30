@@ -35,10 +35,10 @@ def lambda_handler(event, context):
     if not item:
         return {
             'statusCode': 404,
-            'body': json.dumps("Producto no encontrado")
+            'body': "Producto no encontrado"
         }
 
     return {
         'statusCode': 200,
-        'body': json.dumps(item)
+        'body': item
     }
