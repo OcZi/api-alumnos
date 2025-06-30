@@ -14,7 +14,15 @@ functions:
     events:
       - http:
           path: /alumnos/listar
-          method: post
+          method: get
+          cors: true
+          integration: lambda
+  buscar:
+    handler: BuscarAlumno.lambda_handler
+    events:
+      - http:
+          path: /alumnos/buscar
+          method: get
           cors: true
           integration: lambda
   crear:
