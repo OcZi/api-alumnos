@@ -14,7 +14,7 @@ functions:
     events:
       - http:
           path: /alumnos/listar
-          method: get
+          method: post
           cors: true
           integration: lambda
   buscar:
