@@ -32,8 +32,5 @@ def lambda_handler(event, context):
     table.update_item(
         Key={'tenant_id': tenant_id, 'alumno_id': alumno_id},
         UpdateExpression=update_expr,
-        ExpressionAttributeValues=expr_values
-    )
-   return {
-    'statusCode': 200, 
-    'body': json.dumps("Alumno modificado")}
+        ExpressionAttributeValues=expr_values)
+   return {'statusCode': 200, 'body': json.dumps("Alumno modificado")}
