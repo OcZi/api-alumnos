@@ -1,4 +1,4 @@
-org: geraldocolchado
+org: salvadordonayre
 service: api-alumnos
 
 provider:
@@ -25,4 +25,19 @@ functions:
           method: post
           cors: true
           integration: lambda
-
+  modificar:
+    handler: ModificarAlumno.lambda_handler
+    events:
+      - http:
+          path: /alumnos/modificar
+          method: post
+          cors: true
+          integration: lambda
+  eliminar:
+    handler: EliminarAlumno.lambda_handler
+    events:
+      - http:
+          path: /alumnos/eliminar
+          method: post
+          cors: true
+          integration: lambda
