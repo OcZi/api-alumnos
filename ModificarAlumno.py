@@ -1,21 +1,19 @@
 import boto3
-
+import json
 
 def load_body(event):
     if 'body' not in event:
         return event
-
     if isinstance(event["body"], dict):
         return event['body']
     else:
         return json.loads(event['body'])
 
-
 def lambda_handler(event, context):
     # Entrada (json)
     body = load_body(event)
-    tenant_id = body['tenant_id']
-    alumno_id = body['alumno_id']
+    tenant_id = body.get('tenant_id')
+    alumno_id = body.get('alumno_id')
     updates = body.get("updates", {})
 
     if not tenant_id or not alumno_id or not updates:
@@ -32,5 +30,10 @@ def lambda_handler(event, context):
     table.update_item(
         Key={'tenant_id': tenant_id, 'alumno_id': alumno_id},
         UpdateExpression=update_expr,
-        ExpressionAttributeValues=expr_values)
-   return {'statusCode': 200, 'body': json.dumps("Alumno modificado")}
+        ExpressionAttributeValues=expr_values
+    )
+
+    return {
+        'statusCode': 200,
+        'body': json.dumps("Alumno modificado")
+    }
