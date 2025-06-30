@@ -22,7 +22,7 @@ functions:
     events:
       - http:
           path: /alumnos/buscar
-          method: get
+          method: post
           cors: true
           integration: lambda
   crear:
