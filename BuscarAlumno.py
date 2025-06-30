@@ -35,7 +35,7 @@ def lambda_handler(event, context):
     if not item:
         return {
             'statusCode': 404,
-            'body': "Producto no encontrado"
+            'body': "Alumno no encontrado"
         }
 
     return {
